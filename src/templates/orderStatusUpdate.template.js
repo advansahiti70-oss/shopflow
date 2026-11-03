@@ -23,7 +23,7 @@ function renderOrderStatusUpdate(payload) {
     <p style="margin:0 0 6px;font-size:13px;letter-spacing:0.6px;text-transform:uppercase;color:${COLORS.olive};">Order ${escapeHtml(payload.orderNumber)}</p>
     <h1 style="margin:0 0 16px;font-size:24px;line-height:32px;font-weight:700;">Order update: ${escapeHtml(statusLabel)}</h1>
     <p style="margin:0 0 20px;font-size:15px;line-height:24px;color:${COLORS.muted};">
-      Hi ${escapeHtml(payload.customerName)}, ${escapeHtml(STATUS_MESSAGES[status])}
+      Hi ${escapeHtml(payload.customerName)},<br>${escapeHtml(STATUS_MESSAGES[status])}
     </p>
     <table role="presentation" cellpadding="0" cellspacing="0" style="background:${COLORS.stone};border:1px solid ${COLORS.border};border-radius:4px;">
       <tr>

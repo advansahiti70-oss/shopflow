@@ -9,7 +9,7 @@ const { ConflictError, UnauthorizedError, ROLES, toUserDTO } = require('../model
 
 // Used when the email does not exist, so a login attempt takes the same time
 // whether or not the account exists (prevents discovering valid emails).
-const DUMMY_HASH = bcrypt.hashSync('dummy-password-for-timing', 4);
+const DUMMY_HASH = bcrypt.hashSync('dummy-password-for-timing', config.auth.bcryptRounds);
 
 function getJwtSecret() {
   if (!config.auth.jwtSecret) throw new Error('JWT_SECRET is not configured');
