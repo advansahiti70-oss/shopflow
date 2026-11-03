@@ -73,6 +73,11 @@ async function findMany({ search, categorySlug, minPriceCents, maxPriceCents, fe
   return { rows: listResult.rows, total: countResult.rows[0].total };
 }
 
+async function count() {
+  const { rows } = await query('SELECT COUNT(*)::int AS total FROM products');
+  return rows[0].total;
+}
+
 async function findById(id) {
   const { rows } = await query(
     `SELECT ${PRODUCT_COLUMNS}
@@ -155,6 +160,7 @@ async function upsert(product, executor) {
 }
 
 module.exports = {
+  count,
   findMany,
   findById,
   findRelated,

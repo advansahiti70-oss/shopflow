@@ -318,6 +318,7 @@ Generate a JWT secret with:
 ```bash
 npm run migrate   # applies new files from /migrations (tracked in schema_migrations)
 npm run seed      # sample catalog, admin + demo customer, 6 sample orders
+npm run seed:if-empty   # same, but does nothing if the database already has products
 ```
 
 - Each migration runs in its own transaction, and applied files are recorded in `schema_migrations`, so running `npm run migrate` again is safe.
@@ -635,15 +636,15 @@ ShopFlow runs as two processes from one codebase: the web server (`npm start`) a
 1. Push the repository to GitHub.
 2. In Render, choose **New → Blueprint** and select the repository. `render.yaml` creates:
    - a PostgreSQL database `shopflow-db`
-   - the web service `shopflow-web`, which runs migrations before each deploy and uses `/health` as its health check path
+   - the web service `shopflow-web`, which uses `/health` as its health check path. Its start command runs `npm run migrate && npm run seed:if-empty && npm start`: migrations are applied on every start, and the sample data is loaded only the first time, while the database is still empty. Render's free plan does not support pre-deploy commands, so this happens on start instead
 3. Fill in the secret variables in the dashboard: `APP_URL` (e.g. `https://shopflow-web.onrender.com`), `RESEND_API_KEY`, `EMAIL_FROM`, `ADMIN_EMAIL` and `ADMIN_PASSWORD`. `JWT_SECRET` is generated automatically.
-4. After the first deploy, open the service **Shell** and run `npm run seed`.
+4. There is no manual seeding step: the first start fills the empty database with the catalog, the admin account (`ADMIN_EMAIL` / `ADMIN_PASSWORD`) and the demo customer. Later restarts leave existing data alone. Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` **before** the first deploy, because they are only read during that first seed.
 5. Free plan: `RUN_WORKER_IN_PROCESS=true` runs the worker inside the web service. Paid plan: uncomment the `worker` service in `render.yaml` and set `RUN_WORKER_IN_PROCESS=false`.
 
 ### Railway, Fly.io or a VPS
 
 - Provision PostgreSQL and set `DATABASE_URL` (plus `DATABASE_SSL=true` if the provider requires TLS).
-- Release/start command: `npm run migrate && npm start`. Add a second process with `npm run worker` (see `Procfile`).
+- Release/start command: `npm run migrate && npm run seed:if-empty && npm start`. Add a second process with `npm run worker` (see `Procfile`).
 - Configure the platform's health check as `GET /health`, expecting status 200.
 
 ### Production checklist
