@@ -1,5 +1,8 @@
 /**
- * Usage: npm run seed
+ * Usage: npm run seed            (always seeds)
+ *        npm run seed:if-empty   (only seeds a database with no products —
+ *                                 used on start-up in production so restarts
+ *                                 never reset stock or passwords)
  *
  * Fills the database with the sample catalog, an admin account, a demo
  * customer and a few sample orders. Safe to run more than once: categories
@@ -132,6 +135,10 @@ async function seedSampleOrders(customer, productsBySlug) {
 }
 
 async function main() {
+  if (process.argv.includes('--if-empty') && (await productRepository.count()) > 0) {
+    console.log('[seed] database already has products, skipping');
+    return;
+  }
   const productsBySlug = await seedCatalog();
   const customer = await seedUsers();
   await seedSampleOrders(customer, productsBySlug);

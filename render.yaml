@@ -13,8 +13,9 @@ services:
     runtime: node
     plan: free
     buildCommand: npm ci --omit=dev
-    preDeployCommand: npm run migrate
-    startCommand: npm start
+    # Free plan has no pre-deploy step: migrate (and seed an empty database) on start.
+    # Both are safe to run on every start.
+    startCommand: npm run migrate && npm run seed:if-empty && npm start
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
