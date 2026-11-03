@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop all products — ShopFlow</title>
+  <meta name="description" content="Browse the full ShopFlow catalog.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container">
+    <div class="page-title">
+      <h1 id="catalog-title">All products</h1>
+      <p id="catalog-subtitle">Everyday goods, designed to last.</p>
+    </div>
+
+    <div class="catalog-layout section--tight">
+      <!-- Filters -->
+      <aside class="filters" id="filters" aria-label="Product filters">
+        <div class="filter-group">
+          <h3>Category</h3>
+          <ul class="filter-list" id="category-filter"></ul>
+        </div>
+        <form class="filter-group" id="price-filter">
+          <h3>Price</h3>
+          <div class="price-inputs">
+            <label class="sr-only" for="min-price">Minimum price</label>
+            <input class="input" id="min-price" name="minPrice" type="number" min="0" step="1" placeholder="$ Min" inputmode="numeric">
+            <span class="text-muted">–</span>
+            <label class="sr-only" for="max-price">Maximum price</label>
+            <input class="input" id="max-price" name="maxPrice" type="number" min="0" step="1" placeholder="$ Max" inputmode="numeric">
+          </div>
+          <span class="field-error" id="price-error"></span>
+          <div style="display:flex;gap:8px;margin-top:12px;">
+            <button class="btn btn-secondary btn-sm" type="submit">Apply</button>
+            <button class="btn btn-ghost btn-sm" type="button" id="clear-filters">Clear all</button>
+          </div>
+        </form>
+      </aside>
+
+      <!-- Results -->
+      <section aria-labelledby="catalog-title">
+        <div class="catalog-toolbar">
+          <span class="result-count" id="result-count" aria-live="polite">&nbsp;</span>
+          <div class="toolbar-controls">
+            <button class="btn btn-secondary btn-sm filters-toggle" type="button" id="filters-toggle" aria-controls="filters" aria-expanded="false">Filters</button>
+            <form class="catalog-search" id="catalog-search" role="search">
+              <label class="sr-only" for="search-input">Search by name</label>
+              <input class="input" id="search-input" name="search" type="search" placeholder="Search by name">
+            </form>
+            <label class="sr-only" for="sort-select">Sort by</label>
+            <select class="select" id="sort-select">
+              <option value="newest">Sort: Newest</option>
+              <option value="price_asc">Price: Low to high</option>
+              <option value="price_desc">Price: High to low</option>
+              <option value="name_asc">Name: A–Z</option>
+              <option value="name_desc">Name: Z–A</option>
+              <option value="rating_desc">Top rated</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="catalog-error"></div>
+        <div class="product-grid product-grid--3" id="product-grid" aria-live="polite"></div>
+        <div class="load-more" id="load-more" hidden>
+          <span id="load-more-status"></span>
+          <button class="btn btn-secondary" type="button" id="load-more-button">Load more</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script type="module" src="/js/pages/products.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Environment files (never commit real credentials)
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Test coverage
+coverage/
