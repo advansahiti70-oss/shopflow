@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ShopFlow — Well-made everyday goods</title>
+  <meta name="description" content="Shop apparel, footwear, accessories and home goods made to last.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <span class="eyebrow">The Autumn Edit</span>
+            <h1>Considered essentials for the season ahead.</h1>
+            <p>Natural fabrics, honest materials and quiet design — new arrivals across apparel, footwear and home.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="/products.html">Shop new arrivals</a>
+              <a class="btn btn-secondary" href="/products.html?category=home">Explore home</a>
+            </div>
+          </div>
+          <figure class="hero-media" style="margin:0;">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=80"
+                 alt="Clothing displayed on a rail in a bright, minimal store" fetchpriority="high" data-fallback="">
+            <figcaption><strong>Up to 30% off outerwear</strong>Through November 30</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Value propositions -->
+    <section class="section--tight">
+      <div class="container">
+        <div class="value-props" id="value-props"></div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Shop by category</h2>
+            <p>Find what you need, faster.</p>
+          </div>
+          <a class="btn btn-ghost" href="/products.html">View all</a>
+        </div>
+        <div class="category-grid" id="category-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Featured products -->
+    <section class="section" style="padding-top:0;">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Bestsellers</h2>
+            <p>The pieces our customers come back for.</p>
+          </div>
+          <a class="btn btn-ghost" href="/products.html?sort=rating_desc">See top rated</a>
+        </div>
+        <div class="product-grid" id="featured-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Promotional banner -->
+    <section class="section" style="padding-top:0;">
+      <div class="container">
+        <div class="promo-banner">
+          <div class="promo-banner__copy">
+            <span class="eyebrow">Home &amp; Living</span>
+            <h2>Slow mornings, made better.</h2>
+            <p>Hand-glazed stoneware, warm lighting and solid wood furniture for a calmer home.</p>
+            <div><a class="btn btn-light" href="/products.html?category=home">Shop the collection</a></div>
+          </div>
+          <div class="promo-banner__media">
+            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80"
+                 alt="A bright living room with a sofa and wooden furniture" loading="lazy" data-fallback="">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script type="module" src="/js/pages/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orders — ShopFlow Admin</title>
+  <meta name="description" content="Manage customer orders.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container" id="admin-root">
+    <div class="admin-header">
+      <div>
+        <span class="eyebrow">Admin</span>
+        <h1>Orders</h1>
+        <p>Review customer orders and update their status.</p>
+      </div>
+    </div>
+
+    <div class="stat-grid" id="stat-grid"></div>
+
+    <form class="admin-toolbar" id="order-filters" role="search">
+      <label class="sr-only" for="order-search">Search orders</label>
+      <input class="input" id="order-search" type="search" placeholder="Search order number, name or email">
+      <label class="sr-only" for="status-filter">Filter by status</label>
+      <select class="select" id="status-filter">
+        <option value="">All statuses</option>
+        <option value="pending">Pending</option>
+        <option value="confirmed">Confirmed</option>
+        <option value="shipped">Shipped</option>
+        <option value="delivered">Delivered</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+    </form>
+
+    <div id="orders-error"></div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Order</th>
+            <th scope="col">Date</th>
+            <th scope="col">Customer</th>
+            <th scope="col" class="num">Items</th>
+            <th scope="col" class="num">Total</th>
+            <th scope="col">Status</th>
+            <th scope="col"><span class="sr-only">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody id="orders-body"></tbody>
+      </table>
+    </div>
+    <div class="pagination" id="pagination"></div>
+  </main>
+
+  <!-- Order details drawer -->
+  <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+  <aside class="drawer" id="order-drawer" aria-hidden="true" aria-labelledby="drawer-title" role="dialog">
+    <div class="drawer__header">
+      <div>
+        <h2 id="drawer-title">Order</h2>
+        <p id="drawer-subtitle"></p>
+      </div>
+      <button class="drawer__close" type="button" id="drawer-close" aria-label="Close order details"></button>
+    </div>
+    <div class="drawer__body" id="drawer-body"></div>
+  </aside>
+
+  <div id="site-footer"></div>
+  <script type="module" src="/js/pages/admin.js"></script>
+</body>
+</html>

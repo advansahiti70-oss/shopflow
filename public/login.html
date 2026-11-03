@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in — ShopFlow</title>
+  <meta name="description" content="Sign in to your ShopFlow account.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="auth-layout">
+    <div class="auth-media">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80"
+           alt="Neatly folded clothing on a wooden rail" data-fallback="">
+    </div>
+
+    <div class="auth-panel">
+      <form class="auth-card" id="auth-form" novalidate>
+        <header>
+          <h1 id="auth-title">Sign in</h1>
+          <p id="auth-subtitle">Welcome back. Sign in to track orders and check out faster.</p>
+        </header>
+
+        <div id="auth-error"></div>
+
+        <div class="field" id="name-field" hidden>
+          <label for="name">Full name</label>
+          <input class="input" id="name" name="name" type="text" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input class="input" id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input class="input" id="password" name="password" type="password" autocomplete="current-password" required>
+          <span class="field-hint" id="password-hint" hidden>At least 8 characters.</span>
+        </div>
+
+        <button class="btn btn-primary btn-block" type="submit" id="auth-submit">Sign in</button>
+
+        <p class="auth-switch" id="auth-switch">
+          New to ShopFlow? <button type="button" data-mode="register">Create an account</button>
+        </p>
+
+        <div class="demo-credentials">
+          Demo customer: <code>customer@example.com</code> / <code>Customer123!</code><br>
+          Admin: use the <code>ADMIN_EMAIL</code> / <code>ADMIN_PASSWORD</code> from your <code>.env</code>.
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script type="module" src="/js/pages/login.js"></script>
+</body>
+</html>
